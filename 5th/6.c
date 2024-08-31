@@ -9,7 +9,7 @@ and check the file descriptor table at /proc/pid/fd.
 
 =======================================================================================================================================================================================
 Sample Output:
-5.out  6.c  6.out  a.out  file1.txt  file2.txt  file3.txt  file4.txt  file.txt
+5.out  6.c  6.out  a.out  file1.txt  file2.txt  file3.txt  file4.txt  file5.txt
 
 
 
@@ -20,17 +20,21 @@ Sample Output:
 
 
 
-#include<unistd.h>
-#include<stdio.h>
-#include<fcntl.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
 
-int main(){
-    int fd =creat("file.txt", O_RDWR);
-    fd = creat("file1.txt", O_RDWR);
-    fd = creat("file2.txt", O_RDWR);
-    fd = creat("file3.txt", O_RDWR);
-    fd = creat("file4.txt", O_RDWR);
-    for(;;){}
-
+int main() {
+    const char *filenames[] = {"file1.txt", "file2.txt", "file3.txt", "file4.txt", "file5.txt"};
+    int num_files = sizeof(filenames) / sizeof(filenames[0]);
+    
+    while (1) {
+        for (int i = 0; i < num_files; ++i) {
+            int fd = open(filenames[i], O_CREAT | O_RDWR | O_TRUNC, 0666);
+           
+            close(fd); 
+        }
+    }
+    
     return 0;
 }
