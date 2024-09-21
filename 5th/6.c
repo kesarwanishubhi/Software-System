@@ -32,9 +32,11 @@ int main() {
         for (int i = 0; i < num_files; ++i) {
             int fd = open(filenames[i], O_CREAT | O_RDWR | O_TRUNC, 0666);
            
-            close(fd); 
+              close(fd); 
         }
     }
     
     return 0;
 }
+
+

@@ -50,7 +50,7 @@ int main(){
 		printf("fd1 = %d\n", fd);
 		printf("fd3 = %d\n", f3);
 		write(fd, "Using dup2\nThis is written by the original file descriptor\n", 59);
-		write(f2, "This is written by the duplicate file descriptor\n", 49);
+		write(f3, "This is written by the duplicate file descriptor\n", 49);
 		
 		printf("Using fcntl\n");
 		f4 = fcntl(fd, F_DUPFD, 27);
